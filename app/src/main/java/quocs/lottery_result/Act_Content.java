@@ -16,6 +16,9 @@ public class Act_Content extends AppCompatActivity
         Frg_ResultTable.OnFragmentInteractionListener {
 
     public LotteryData lotteryData;
+    private boolean fragmentState;
+    Frg_RegionList frgRegionList;
+    Frg_ResultTable frgResultTable;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,8 +36,9 @@ public class Act_Content extends AppCompatActivity
 //            LotteryData lotteryData = new LotteryData();
 //            LotteryData.buildData(raw_input, lotteryData);
 
-            Frg_RegionList frgRegionList = Frg_RegionList.newInstance(lotteryData);
+            frgRegionList = Frg_RegionList.newInstance(lotteryData);
             getSupportFragmentManager().beginTransaction().add(R.id.layoutContent, frgRegionList, "TEST").commit();
+            fragmentState = true;
 
         }
         catch  (Exception e) {
@@ -65,14 +69,18 @@ public class Act_Content extends AppCompatActivity
     @Override
     public void setRegionSelected (LotteryDataPerRegion lotteryDataPerRegion) {
 
-        Frg_ResultTable frgResultTable = Frg_ResultTable.newInstance();
+        frgResultTable = Frg_ResultTable.newInstance();
         frgResultTable.updateView(lotteryDataPerRegion);
 
         getSupportFragmentManager().beginTransaction().replace(R.id.layoutContent, frgResultTable).commit();
+        fragmentState = false;
     }
 
     @Override
     public void onBackPressed() {
+        if (!fragmentState) {
+            getSupportFragmentManager().beginTransaction().replace(R.id.layoutContent, frgRegionList).commit();
+        }
 
     }
 

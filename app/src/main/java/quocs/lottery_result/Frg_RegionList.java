@@ -10,6 +10,7 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.TextView;
 
 
 /**
@@ -57,8 +58,10 @@ public class Frg_RegionList extends Fragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_region_list, container, false);
 
-        ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(view.getContext(),
-                android.R.layout.simple_list_item_1, lotteryData.lstValues);
+//        ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(view.getContext(),
+//                android.R.layout.simple_list_item_1, lotteryData.lstValues);
+
+        M00N_ListAdapter arrayAdapter = new M00N_ListAdapter(view.getContext(), android.R.layout.simple_list_item_1, lotteryData.lstValues);
 
         ListView listViewRegion = (ListView) view.findViewById(R.id.listViewRegion);
         listViewRegion.setAdapter(arrayAdapter);
@@ -115,4 +118,45 @@ public class Frg_RegionList extends Fragment {
 
         void setRegionSelected(LotteryDataPerRegion lotteryDataPerRegion);
     }
+}
+
+class M00N_ListAdapter extends ArrayAdapter<String> {
+
+    M00N_ListAdapter(Context context, int resource, String[] objects) {
+        super(context, resource, objects);
+
+    }
+    @Override
+    public View getView(int position, View convertView, ViewGroup parent) {
+
+        ViewHolder viewHolder;
+
+        if (convertView == null) {
+            LayoutInflater inflater = LayoutInflater.from(this.getContext());
+            convertView = inflater.inflate(R.layout.list_item, parent, false);
+
+            viewHolder = new ViewHolder();
+            viewHolder.tvItemText = (TextView) convertView.findViewById(R.id.tvItemText);
+
+            convertView.setTag(viewHolder);
+        }
+        else {
+            viewHolder = (ViewHolder) convertView.getTag();
+        }
+
+        viewHolder.tvItemText.setText(this.getItem(position));
+
+        return convertView;
+    }
+
+    @Override
+    public View getDropDownView (int position, View convertView, ViewGroup parent) {
+        return getView(position, convertView, parent);
+    }
+
+    class ViewHolder {
+        TextView tvItemText;
+
+    }
+
 }

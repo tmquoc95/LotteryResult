@@ -1,5 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <color name="c50">#E8F5E9</color>
+    <color name="c100">#C8E6C9</color>
+    <color name="c200">#A5D6A7</color>
+    <color name="c300">#81C784</color>
+    <color name="c400">#66BB6A</color>
+    <color name="c500">#4CAF50</color>
+    <color name="c600">#43A047</color>
+    <color name="c700">#388E3C</color>
+    <color name="c800">#2E7D32</color>
+    <color name="c900">#1B5E20</color>
+
     <color name="colorPrimary">#3F51B5</color>
     <color name="colorPrimaryDark">#303F9F</color>
     <color name="colorAccent">#FF4081</color>

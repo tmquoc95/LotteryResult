@@ -4,6 +4,7 @@ import android.content.Context;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -55,15 +56,23 @@ public class Frg_ResultTable extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_result_table, container, false);
-        ArrayAdapter adapter = new ArrayAdapter(getContext(),  android.R.layout.simple_list_item_1, this.lotteryDataPerRegion.lstValues);
+        M00N_ListAdapter m00N_listAdapter = new M00N_ListAdapter(getContext(),
+                android.R.layout.simple_list_item_1, this.lotteryDataPerRegion.lstValues);
+//        ArrayAdapter adapter = new ArrayAdapter(getContext(),  android.R.layout.simple_list_item_1, this.lotteryDataPerRegion.lstValues);
 
         Spinner spinnerDate = (Spinner) view.findViewById(R.id.spinnerDate);
-        spinnerDate.setAdapter(adapter);
+        spinnerDate.setAdapter(m00N_listAdapter);
 
         recyclerViewPrizes = (RecyclerView) view.findViewById(R.id.recyclerViewPrizes);
-        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL, false);
 
+        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL, false);
         recyclerViewPrizes.setLayoutManager( linearLayoutManager);
+
+        DividerItemDecoration dividerItemDecoration = new DividerItemDecoration(recyclerViewPrizes.getContext(),
+                linearLayoutManager.getOrientation());
+
+        recyclerViewPrizes.addItemDecoration(dividerItemDecoration);
+
 
         spinnerDate.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override

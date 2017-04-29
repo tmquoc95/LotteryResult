@@ -1,12 +1,23 @@
 <resources>
 
     <!-- Base application theme. -->
-    <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
+    <style name="m00n_Activity" parent="Theme.AppCompat.Light">
         <!-- Customize your theme here. -->
-        <item name="colorPrimary">@color/colorPrimary</item>
-        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
-        <item name="colorAccent">@color/colorAccent</item>
+        <item name="colorPrimary">@color/c500</item>
+        <item name="colorPrimaryDark">@color/c900</item>
+        <item name="colorAccent">@color/c50</item>
+        <item name="android:textColorPrimary">@color/c50</item>
 
+        <!--<item name="android:textViewStyle">@style/m00n_TextView</item>-->
+    </style>
+
+    <style name="m00n_TextView" parent="android:Widget.TextView">
+        <item name="android:background">@color/c100</item>
+        <item name="android:textSize">18sp</item>
+    </style>
+
+    <style name="m00n_ProgessBar" parent="android:Widget.ProgressBar">
+        <item name="colorAccent">@color/c500</item>
     </style>
 
 </resources>
